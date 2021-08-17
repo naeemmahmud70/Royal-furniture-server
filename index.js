@@ -3,7 +3,8 @@ const cors = require("cors");
 const bodyParser = require('body-parser')
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
-const ObjectId = require('mongodb').ObjectId
+const ObjectId = require('mongodb').ObjectId;
+const { response } = require('express');
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -29,6 +30,7 @@ client.connect(err => {
         const newProduct = req.body;
         productsCollection.insertOne(newProduct)
             .then(result => {
+                response.send(result)
                 res.redirect('/')
             });
     });
