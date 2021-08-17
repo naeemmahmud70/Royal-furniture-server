@@ -30,7 +30,6 @@ client.connect(err => {
         const newProduct = req.body;
         productsCollection.insertOne(newProduct)
             .then(result => {
-                response.send(result)
                 res.redirect('/')
             });
     });
@@ -52,7 +51,6 @@ client.connect(err => {
     app.get('/orderProduct/:id', (req, res) => {
         productsCollection.find({ _id: ObjectId(req.params.id) })
             .toArray((err, documents) => {
-                console.log(err)
                 res.send(documents[0])
             });
     });
