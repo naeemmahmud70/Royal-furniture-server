@@ -85,6 +85,22 @@ client.connect(err => {
             });
     });
 
+    app.post('/todaysOrder', (req, res) => {
+        const date = req.body.date;
+        ordersCollection.find({ oderTime: date })
+            .toArray((err, documents) => {
+                res.send(documents)
+            });
+    });
+
+    app.post('/pendingOrder', (req, res) => {
+        const status = req.body.status;
+        ordersCollection.find({ orderStatus: status })
+            .toArray((err, documents) => {
+                res.send(documents)
+            });
+    });
+
     app.post('/addBlog', (req, res) => {
         const newBlog = req.body;
         blogsCollection.insertOne(newBlog)
