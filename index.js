@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.clvrh.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
-
+    console.log("connected")
     const productsCollection = client.db("furniture").collection("products");
     const ordersCollection = client.db("furniture").collection("orders");
     const blogsCollection = client.db("furniture").collection("blogs");
